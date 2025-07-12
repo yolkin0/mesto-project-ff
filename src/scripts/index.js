@@ -55,10 +55,6 @@ const handleFormNewCardSubmit = (evt) => {
 
   // Close form
   closeModal(popupNewCard);
-
-  // Clear fields
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileAbout.textContent;
 };
 
 const openImagePopup = (event) => {
@@ -81,8 +77,7 @@ formEditElement.addEventListener('submit', handleFormEditElementSubmit);
 formNewCard.addEventListener('submit', handleFormNewCardSubmit);
 
 profileAddButton.addEventListener('click', () => {
-  cardNameInput.value = '';
-  cardUrlInput.value = '';
+  formNewCard.reset();
   openModal(popupNewCard);
 });
 

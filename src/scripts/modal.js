@@ -9,11 +9,17 @@ const handleEscKeyUp = (e) => {
 
 export const openModal = (modal) => {
   modal.classList.add(popupIsOpenedClassName);
+  
+  // Обработчик события keydown для клавиши Escape должен 
+  // добавляться при открытии модального окна
   document.addEventListener("keydown", handleEscKeyUp);
 };
 
 export const closeModal= (modal) => {
   modal.classList.remove(popupIsOpenedClassName);
+  
+  // Обработчик события keydown для клавиши Escape 
+  // должен удаляться при его закрытии.
   document.removeEventListener("keydown", handleEscKeyUp);
 };
 
