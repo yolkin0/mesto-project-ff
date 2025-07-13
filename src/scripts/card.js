@@ -1,10 +1,11 @@
-export const addCard = (cardData, toBegin = false) => {  
+export const addCard = ({ cardData, onImageClick, toBegin = false }) => {  
   const content = document.querySelector('.content');
   const placesListContainer = content.querySelector('.places__list');
   const cardElement = createCardElement({
     cardData, 
     onDeleteCard: handleRemoveCard,
-    onLikeCard: handleLikeCard
+    onLikeCard: handleLikeCard,
+    onImageClick: onImageClick
   });
 
   if (toBegin)
@@ -21,7 +22,7 @@ const handleLikeCard = (evt) => {
   evt.target.classList.toggle('card__like-button_is-active');
 };
 
-const createCardElement = ({ cardData, onDeleteCard, onLikeCard }) => {
+const createCardElement = ({ cardData, onDeleteCard, onLikeCard, onImageClick }) => {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true); 
 
@@ -33,8 +34,10 @@ const createCardElement = ({ cardData, onDeleteCard, onLikeCard }) => {
   image.src = cardData.link;
   image.alt = cardData.name;
   title.textContent = cardData.name;  
+  
   deleteButton.addEventListener('click', () => onDeleteCard(cardElement));
   likeButton.addEventListener('click', onLikeCard);
+  image.addEventListener('click', onImageClick);
   
   return cardElement;
 };

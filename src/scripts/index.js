@@ -49,9 +49,13 @@ const handleFormNewCardSubmit = (evt) => {
   evt.preventDefault();
 
   addCard({
-    name: cardNameInput.value,
-    link: cardUrlInput.value
-  }, true);
+    cardData: {
+      name: cardNameInput.value,
+      link: cardUrlInput.value
+    },
+    toBegin: true,
+    onImageClick: openImagePopup
+  });
 
   // Close form
   closeModal(popupNewCard);
@@ -81,13 +85,10 @@ profileAddButton.addEventListener('click', () => {
   openModal(popupNewCard);
 });
 
-placesListContainer.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('card__image')) {
-    openImagePopup(evt);
-  }
-}); 
-
 // Add cards 
 initialCards.forEach((cardData) => {
-  addCard(cardData);
+  addCard({
+    cardData,
+    onImageClick: openImagePopup
+  });
 });
