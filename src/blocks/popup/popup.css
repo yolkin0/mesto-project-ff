@@ -25,7 +25,7 @@
 .popup__input_error {
   visibility: hidden;
   display: block;
-  /*min-height: 14px;*/
+  min-height: 28px;
   margin-top: 5px;
   color: red;
   font-size: 12px;

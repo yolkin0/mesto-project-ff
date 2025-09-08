@@ -21,8 +21,12 @@ export const createCardElement = ({ cardData, userId, onDeleteCardServer, onLike
   if (cardData.owner && cardData.owner._id === userId) {
     deleteButton.style.display = 'block';
     deleteButton.addEventListener('click', () => {
-      if (onDeleteCardServer(cardData._id))
-        cardElement.remove();
+      onDeleteCardServer(cardData._id)
+        .then((success) => {
+          if (success) {
+            cardElement.remove();
+          }
+        });
     });
   } else {
     deleteButton.style.display = 'none';
